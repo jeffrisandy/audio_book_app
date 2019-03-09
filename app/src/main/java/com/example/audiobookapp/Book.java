@@ -9,11 +9,16 @@ public class Book {
     private String mBookAuthor;
 
     /** book cover img */
-    private int mBookCover;
+    private int mBookCoverId;
 
 
-    public Song(int bookCover, String bookTitle, String bookAuthor) {
-        mBookCover = bookCover
+    public Book(String bookTitle, String bookAuthor, int bookCoverId) {
+        mBookCoverId = bookCoverId;
+        mBookTitle = bookTitle;
+        mBookAuthor = bookAuthor;
+    }
+
+    public Book(String bookTitle, String bookAuthor) {
         mBookTitle = bookTitle;
         mBookAuthor = bookAuthor;
     }
@@ -35,10 +40,10 @@ public class Book {
     }
 
     /**
-     * get the book cover img
+     * get the book cover img id
      */
 
-    public String getCover(){
-        return mBookCover;
+    public int getCoverId(){
+        return mBookCoverId;
     }
 }

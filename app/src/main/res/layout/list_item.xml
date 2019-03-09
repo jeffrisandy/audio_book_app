@@ -3,22 +3,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
     android:padding="16dp">
 
     <ImageView
         android:id="@+id/book_cover_image_view"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:src="@drawable/rework_jason_fried_david_heinemeier_hansson"
-        android:scaleType="centerCrop"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/bad_blood_john_carreyrou"
         />
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="3sp">
+        android:paddingLeft="10dp">
 
         <TextView
             android:layout_width="match_parent"
