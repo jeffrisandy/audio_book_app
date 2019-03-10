@@ -1,6 +1,8 @@
 package com.example.audiobookapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,9 +14,6 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 public class EntrepreneurActivity extends AppCompatActivity {
-    int bookCoverId ;
-    String bookTitle ;
-    String bookAuthor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +48,9 @@ public class EntrepreneurActivity extends AppCompatActivity {
                 Book currentBook = (Book) adapterView.getItemAtPosition(position);
 
                 // Extract strings from Opus object.
-                bookCoverId = currentBook.getCoverId();
-                bookTitle = currentBook.getTitle();
-                bookAuthor = currentBook.getAuthor();
+                int bookCoverId = currentBook.getCoverId();
+                String bookTitle = currentBook.getTitle();
+                String bookAuthor = currentBook.getAuthor();
 
                 // Sending the name of song and author to PlayerActivity.
                 Intent bookIntent = new Intent(EntrepreneurActivity.this, PlayerActivity.class);
@@ -69,11 +68,19 @@ public class EntrepreneurActivity extends AppCompatActivity {
 
             @Override
             public  void onClick(View v) {
+                // get data for currently playing in PlayerActivity
+                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(EntrepreneurActivity.this);
+                String bookTitlePlaying = prefs.getString("title", null);
+                String bookAuthorPlaying = prefs.getString("author", null);
+                int bookCoverPlaying = prefs.getInt("cover_id", 0);
+
+                //create intent to PlayerActivity
                 Intent nowPlayingIntent = new Intent(EntrepreneurActivity.this, PlayerActivity.class);
-                nowPlayingIntent.putExtra("title", bookTitle);
-                nowPlayingIntent.putExtra("author", "By " + bookAuthor);
-                nowPlayingIntent.putExtra("cover_id", bookCoverId);
+                nowPlayingIntent.putExtra("title", bookTitlePlaying);
+                nowPlayingIntent.putExtra("author", "By " + bookAuthorPlaying);
+                nowPlayingIntent.putExtra("cover_id", bookCoverPlaying);
                 startActivity(nowPlayingIntent);
+
             }
         });
 

@@ -78,8 +78,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public  void onClick(View v) {
-                // get intent from PlayerActivity
-
+                // get data for currently playing in PlayerActivity
                 SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
                 String bookTitlePlaying = prefs.getString("title", null);
                 String bookAuthorPlaying = prefs.getString("author", null);
