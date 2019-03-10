@@ -2,12 +2,19 @@ package com.example.audiobookapp;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+//    String bookTitle = PlayerActivity.
+//    String bookAuthor = bookAuthorPlaying.PlayerActivity;
+//    int bookCoverId = bookCoverPlaying.PlayerActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +68,33 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(leadershipIntent);
             }
         });
+
+
+
+        // setting onclick listener to the button "Now Playing"
+        Button nowPlayingButton = (Button) findViewById(R.id.library_now_playing_button);
+
+        nowPlayingButton.setOnClickListener( new View.OnClickListener(){
+
+            @Override
+            public  void onClick(View v) {
+                // get intent from PlayerActivity
+
+                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+                String bookTitlePlaying = prefs.getString("title", null);
+                String bookAuthorPlaying = prefs.getString("author", null);
+                int bookCoverPlaying = prefs.getInt("cover_id", 0);
+
+                //create intent to PlayerActivity
+                Intent nowPlayingIntent = new Intent(MainActivity.this, PlayerActivity.class);
+                nowPlayingIntent.putExtra("title", bookTitlePlaying);
+                nowPlayingIntent.putExtra("author", "By " + bookAuthorPlaying);
+                nowPlayingIntent.putExtra("cover_id", bookCoverPlaying);
+                startActivity(nowPlayingIntent);
+
+            }
+        });
+
 
     }
 }

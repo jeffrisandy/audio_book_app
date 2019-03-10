@@ -6,11 +6,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
 public class EntrepreneurActivity extends AppCompatActivity {
+    int bookCoverId ;
+    String bookTitle ;
+    String bookAuthor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +33,7 @@ public class EntrepreneurActivity extends AppCompatActivity {
         books.add(new Book( "Think and Grow Rich", "Rich Napoleon", R.drawable.think_and_grow_rich_napoleon_hill));
         books.add(new Book( "Zero to One", "Peter Thiel", R.drawable.zero_to_one_peter_thiel));
 
+        // create custom adapter and attach it to ListView list
         BookAdapter booksAdapter = new BookAdapter(this, books);
 
         ListView listView = (ListView) findViewById(R.id.list);
@@ -44,9 +49,9 @@ public class EntrepreneurActivity extends AppCompatActivity {
                 Book currentBook = (Book) adapterView.getItemAtPosition(position);
 
                 // Extract strings from Opus object.
-                int bookCoverId = currentBook.getCoverId();
-                String bookTitle = currentBook.getTitle();
-                String bookAuthor = currentBook.getAuthor();
+                bookCoverId = currentBook.getCoverId();
+                bookTitle = currentBook.getTitle();
+                bookAuthor = currentBook.getAuthor();
 
                 // Sending the name of song and author to PlayerActivity.
                 Intent bookIntent = new Intent(EntrepreneurActivity.this, PlayerActivity.class);
@@ -57,6 +62,21 @@ public class EntrepreneurActivity extends AppCompatActivity {
                 startActivity(bookIntent);
             }
         });
+
+        // setting onclick listener to the button "Now Playing"
+        Button nowPlayingButton = (Button) findViewById(R.id.category_now_playing_button);
+        nowPlayingButton.setOnClickListener( new View.OnClickListener(){
+
+            @Override
+            public  void onClick(View v) {
+                Intent nowPlayingIntent = new Intent(EntrepreneurActivity.this, PlayerActivity.class);
+                nowPlayingIntent.putExtra("title", bookTitle);
+                nowPlayingIntent.putExtra("author", "By " + bookAuthor);
+                nowPlayingIntent.putExtra("cover_id", bookCoverId);
+                startActivity(nowPlayingIntent);
+            }
+        });
+
 
     }
 }

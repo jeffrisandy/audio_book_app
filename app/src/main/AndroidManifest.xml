@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PlayerActivity"></activity>
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,16 +19,20 @@
         </activity>
         <activity
             android:name=".LeadershipActivity"
-            android:label="Leadership Audio Books"
+            android:label="Leadership"
             android:parentActivityName=".MainActivity"></activity>
         <activity
             android:name=".InvestingActivity"
-            android:label="Investing Audio Books"
+            android:label="Investing"
             android:parentActivityName=".MainActivity"></activity>
         <activity
             android:name=".EntrepreneurActivity"
-            android:label="Entrepreneurship Audio Books"
+            android:label="Entrepreneurship"
             android:parentActivityName=".MainActivity"></activity>
+
+        <activity
+            android:name=".PlayerActivity"
+            android:label="Now Listening"></activity>
     </application>
 
 </manifest>
