@@ -29,7 +29,7 @@ public class PlayerActivity extends AppCompatActivity {
         // Set the book author for playing.
         TextView authorTextView = findViewById(R.id.player_author);
         String bookAuthorPlaying = bookIntent.getStringExtra("author");
-        authorTextView.setText(bookAuthorPlaying);
+        authorTextView.setText("By " + bookAuthorPlaying);
 
         // Set the book cover id for playing.
         ImageView coverImageView = findViewById(R.id.player_book_cover_image_view);

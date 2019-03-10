@@ -10,6 +10,7 @@ import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -55,7 +56,7 @@ public class EntrepreneurActivity extends AppCompatActivity {
                 // Sending the name of song and author to PlayerActivity.
                 Intent bookIntent = new Intent(EntrepreneurActivity.this, PlayerActivity.class);
                 bookIntent.putExtra("title", bookTitle);
-                bookIntent.putExtra("author", "By " + bookAuthor);
+                bookIntent.putExtra("author",  bookAuthor);
                 bookIntent.putExtra("cover_id", bookCoverId);
 
                 startActivity(bookIntent);
@@ -74,12 +75,17 @@ public class EntrepreneurActivity extends AppCompatActivity {
                 String bookAuthorPlaying = prefs.getString("author", null);
                 int bookCoverPlaying = prefs.getInt("cover_id", 0);
 
-                //create intent to PlayerActivity
-                Intent nowPlayingIntent = new Intent(EntrepreneurActivity.this, PlayerActivity.class);
-                nowPlayingIntent.putExtra("title", bookTitlePlaying);
-                nowPlayingIntent.putExtra("author", "By " + bookAuthorPlaying);
-                nowPlayingIntent.putExtra("cover_id", bookCoverPlaying);
-                startActivity(nowPlayingIntent);
+                if (bookTitlePlaying != null) {
+
+                    //create intent to PlayerActivity
+                    Intent nowPlayingIntent = new Intent(EntrepreneurActivity.this, PlayerActivity.class);
+                    nowPlayingIntent.putExtra("title", bookTitlePlaying);
+                    nowPlayingIntent.putExtra("author",  bookAuthorPlaying);
+                    nowPlayingIntent.putExtra("cover_id", bookCoverPlaying);
+                    startActivity(nowPlayingIntent);
+                } else {
+                    Toast.makeText(EntrepreneurActivity.this, "You don't have any audiobook that is currently playing", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });

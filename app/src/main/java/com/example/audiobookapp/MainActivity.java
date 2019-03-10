@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 //    String bookTitle = PlayerActivity.
@@ -84,12 +85,18 @@ public class MainActivity extends AppCompatActivity {
                 String bookAuthorPlaying = prefs.getString("author", null);
                 int bookCoverPlaying = prefs.getInt("cover_id", 0);
 
-                //create intent to PlayerActivity
-                Intent nowPlayingIntent = new Intent(MainActivity.this, PlayerActivity.class);
-                nowPlayingIntent.putExtra("title", bookTitlePlaying);
-                nowPlayingIntent.putExtra("author", "By " + bookAuthorPlaying);
-                nowPlayingIntent.putExtra("cover_id", bookCoverPlaying);
-                startActivity(nowPlayingIntent);
+                // check if there is currently playing
+                if (bookTitlePlaying != null) {
+
+                    //create intent to PlayerActivity
+                    Intent nowPlayingIntent = new Intent(MainActivity.this, PlayerActivity.class);
+                    nowPlayingIntent.putExtra("title", bookTitlePlaying);
+                    nowPlayingIntent.putExtra("author", bookAuthorPlaying);
+                    nowPlayingIntent.putExtra("cover_id", bookCoverPlaying);
+                    startActivity(nowPlayingIntent);
+                } else {
+                    Toast.makeText(MainActivity.this, "You don't have any audiobook that is currently playing", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
