@@ -66,7 +66,7 @@ public class BookAdapter extends ArrayAdapter<Book> {
 
         // Find the TextView in the list_item.xml layout with the ID author_text_view
         TextView authorTextView = (TextView) listItemView.findViewById(R.id.author_text_view);
-        authorTextView.setText(currentBook.getAuthor());
+        authorTextView.setText("By " + currentBook.getAuthor());
 
         return listItemView;
 

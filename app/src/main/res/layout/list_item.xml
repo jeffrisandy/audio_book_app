@@ -18,18 +18,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingLeft="10dp">
+        android:paddingLeft="11dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/title_text_view"
+            android:textSize="16sp"
             tools:text="Rework"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/author_text_view"
+            android:textSize="12sp"
             tools:text="Jason Fried and David Heinemeier"/>
     </LinearLayout>
 
